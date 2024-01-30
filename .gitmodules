@@ -1,0 +1,3 @@
+[submodule "src/Foster"]
+	path = src/Foster
+	url = https://github.com/steviegt6/Foster.git

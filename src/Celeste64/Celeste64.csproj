@@ -13,7 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="FosterFramework" Version="0.1.14-alpha" />
+    <ProjectReference Include="..\Foster\Framework\Foster.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SharpGLTF.Runtime" Version="1.0.0-alpha0031" />
     <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
   </ItemGroup>
