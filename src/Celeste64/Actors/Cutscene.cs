@@ -31,7 +31,7 @@ public class Cutscene : Actor, IHaveUI
 
     public override void Destroyed()
     {
-		Audio.StopBus(Sfx.bus_dialog, false);
+		Audio.StopBus(Sfx.BUS_DIALOG, false);
 		dialogSnapshot.Stop();
     }
 
@@ -42,13 +42,13 @@ public class Cutscene : Actor, IHaveUI
 			yield return Co.Run(Say(line.Face, line.Text, line.Voice));
 		}
 
-		Audio.StopBus(Sfx.bus_dialog, false);
+		Audio.StopBus(Sfx.BUS_DIALOG, false);
 	}
 
 	public CoEnumerator Say(string face, string line, string? voice = null)
 	{
 		saying = new Saying() { Face = $"faces/{face}", Text = line, Talking = false };
-		dialogSnapshot = Audio.Play(Sfx.snapshot_dialog);
+		dialogSnapshot = Audio.Play(Sfx.SNAPSHOT_DIALOG);
 
 		// ease in
 		while (saying.Ease < 1.0f)
@@ -87,7 +87,7 @@ public class Cutscene : Actor, IHaveUI
 		saying.Talking = false;
 		while (!Controls.Confirm.Pressed && !Controls.Cancel.Pressed)
 			yield return Co.SingleFrame;
-		Audio.Play(Sfx.ui_dialog_advance);
+		Audio.Play(Sfx.UI_DIALOG_ADVANCE);
 
 		// ease out
 		while (saying.Ease > 0.0f)
@@ -169,7 +169,7 @@ public class Cutscene : Actor, IHaveUI
 
 	private CoEnumerator PerformCutscene()
 	{
-		Audio.Play(Sfx.sfx_readsign_in);
+		Audio.Play(Sfx.SFX_READSIGN_IN);
 
 		while (ease < 1.0f)
 		{
@@ -179,7 +179,7 @@ public class Cutscene : Actor, IHaveUI
 
 		yield return Co.Run(Running(this));
 
-		Audio.Play(Sfx.sfx_readsign_out);
+		Audio.Play(Sfx.SFX_READSIGN_OUT);
 
 		while (ease < 1.0f)
 		{

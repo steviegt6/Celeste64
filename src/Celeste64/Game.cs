@@ -148,7 +148,7 @@ public class Game : Module
         }
 		else if (transitionStep == TransitionStep.Perform)
 		{
-			Audio.StopBus(Sfx.bus_gameplay_world, false);
+			Audio.StopBus(Sfx.BUS_GAMEPLAY_WORLD, false);
 
 			// exit last scene
 			if (scenes.TryPeek(out var lastScene))

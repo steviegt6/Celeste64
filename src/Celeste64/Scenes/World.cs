@@ -78,7 +78,7 @@ public class World : Scene
 			pauseMenu.Add(new Menu.Option("Retry", () =>
 			{
 				SetPaused(false);
-				Audio.StopBus(Sfx.bus_dialog, false);
+				Audio.StopBus(Sfx.BUS_DIALOG, false);
 				Get<Player>()?.Kill();
 			}));
 			pauseMenu.Add(new Menu.Spacer());
@@ -354,7 +354,7 @@ public class World : Scene
 			if (Controls.Pause.Pressed || Controls.Cancel.Pressed)
 			{
 				SetPaused(false);
-				Audio.Play(Sfx.ui_unpause);
+				Audio.Play(Sfx.UI_UNPAUSE);
 			}
 			else
 				pauseMenu.Update();
@@ -367,13 +367,13 @@ public class World : Scene
 	{
 		if (paused != Paused)
 		{
-			Audio.SetBusPaused(Sfx.bus_gameplay, paused);
-			Audio.SetBusPaused(Sfx.bus_bside_music, paused);
+			Audio.SetBusPaused(Sfx.BUS_GAMEPLAY, paused);
+			Audio.SetBusPaused(Sfx.BUS_BSIDE_MUSIC, paused);
 
 			if (paused)
 			{
-				Audio.Play(Sfx.ui_pause);
-				pauseSnapshot = Audio.Play(Sfx.snapshot_pause);
+				Audio.Play(Sfx.UI_PAUSE);
+				pauseSnapshot = Audio.Play(Sfx.SNAPSHOT_PAUSE);
 			}
 			else
 				pauseSnapshot.Stop();

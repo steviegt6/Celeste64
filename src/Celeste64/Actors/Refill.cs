@@ -56,7 +56,7 @@ public class Refill : Actor, IHaveSprites, IPickup, IHaveModels, ICastPointShado
 			if (tCooldown <= 0.0f)
 			{
 				UpdateOffScreen = false;
-				Audio.Play(IsDouble ? Sfx.sfx_dashcrystal_double_return : Sfx.sfx_dashcrystal_return, Position);
+				Audio.Play(IsDouble ? Sfx.SFX_DASHCRYSTAL_DOUBLE_RETURN : Sfx.SFX_DASHCRYSTAL_RETURN, Position);
 			}
 		}
 
@@ -81,7 +81,7 @@ public class Refill : Actor, IHaveSprites, IPickup, IHaveModels, ICastPointShado
 			tCooldown = 4;
 			tCollect = 1.0f;
 			World.HitStun = 0.05f;
-			Audio.Play(IsDouble ? Sfx.sfx_dashcrystal_double : Sfx.sfx_dashcrystal, Position);
+			Audio.Play(IsDouble ? Sfx.SFX_DASHCRYSTAL_DOUBLE : Sfx.SFX_DASHCRYSTAL, Position);
 		}
 	}
 

@@ -30,7 +30,7 @@ public class DoubleDashPuzzleBlock : Solid, IUnlockStrawberry, IHaveSprites
 			ready = true;
 			pulse = 1;
 			TShake = 1.0f;
-			Audio.Play(Sfx.sfx_secret, Position);
+			Audio.Play(Sfx.SFX_SECRET, Position);
 		}
 
 		if (ready && pulse > 0)

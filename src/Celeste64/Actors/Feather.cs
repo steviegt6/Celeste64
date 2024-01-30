@@ -47,7 +47,7 @@ public class Feather : Actor, IHaveModels, IHaveSprites, IPickup, ICastPointShad
 			if (tCooldown <= 0)
 			{
 				UpdateOffScreen = false;
-				Audio.Play(Sfx.sfx_feather_reappear, Position);
+				Audio.Play(Sfx.SFX_FEATHER_REAPPEAR, Position);
 			}
 		}
 		

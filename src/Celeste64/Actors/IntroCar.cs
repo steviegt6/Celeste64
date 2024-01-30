@@ -75,12 +75,12 @@ public class IntroCar : Solid
 		if (!hasRider && HasPlayerRider())
 		{
 			hasRider = true;
-			Audio.Play(Sfx.sfx_car_down, Position);
+			Audio.Play(Sfx.SFX_CAR_DOWN, Position);
 		}
 		else if (hasRider && !HasPlayerRider())
 		{
 			hasRider = false;
-			Audio.Play(Sfx.sfx_car_up, Position);
+			Audio.Play(Sfx.SFX_CAR_UP, Position);
 		}
 
 		var target = (hasRider ? spawnPoint - Vec3.UnitZ * 1.5f : spawnPoint);

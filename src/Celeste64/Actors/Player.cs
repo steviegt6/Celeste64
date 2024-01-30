@@ -250,9 +250,9 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 			stateMachine.State = States.Normal;
 		}
 
-		sfxWallSlide = World.Add(new Sound(this, Sfx.sfx_wall_slide));
-		sfxFeather = World.Add(new Sound(this, Sfx.sfx_feather_state_active_loop));
-		sfxBubble = World.Add(new Sound(this, Sfx.sfx_bubble_loop));
+		sfxWallSlide = World.Add(new Sound(this, Sfx.SFX_WALL_SLIDE));
+		sfxFeather = World.Add(new Sound(this, Sfx.SFX_FEATHER_STATE_ACTIVE_LOOP));
+		sfxBubble = World.Add(new Sound(this, Sfx.SFX_BUBBLE_LOOP));
 
 		cameraOriginPos = Position;
 		GetCameraTarget(out var orig, out var target, out _);
@@ -425,7 +425,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 
 				if (!Game.Instance.IsMidTransition && !InBubble)
 				{
-					Audio.Play(Sfx.sfx_land, Position);
+					Audio.Play(Sfx.SFX_LAND, Position);
 
 					for (int i = 0; i < 16; i++)
 					{
@@ -691,7 +691,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 				Position += hit.Pushout;
 				velocity = velocity.WithXY(Vec2.Reflect(velocity.XY(), hit.Normal.XY().Normalized()));
 				tFeatherWallBumpCooldown = 0.50f;
-				Audio.Play(Sfx.sfx_feather_state_bump_wall, Position);
+				Audio.Play(Sfx.SFX_FEATHER_STATE_BUMP_WALL, Position);
 			}
 			// is it a breakable thing?
 			else if (resolveImpact && hit.Actor is BreakBlock breakable && !breakable.Destroying && velocity.XY().Length() > 90)
@@ -739,7 +739,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		CancelGroundSnap();
 
 		ModelScale = new(.6f, .6f, 1.4f);
-		Audio.Play(Sfx.sfx_jump, Position);
+		Audio.Play(Sfx.SFX_JUMP, Position);
 	}
 
 	private void WallJump()
@@ -755,7 +755,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		CancelGroundSnap();
 
 		ModelScale = new(.6f, .6f, 1.4f);
-		Audio.Play(Sfx.sfx_jump_wall, Position);
+		Audio.Play(Sfx.SFX_JUMP_WALL, Position);
 	}
 
 	private void SkidJump()
@@ -778,8 +778,8 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		}
 
 		ModelScale = new(.6f, .6f, 1.4f);
-		Audio.Play(Sfx.sfx_jump, Position);
-		Audio.Play(Sfx.sfx_jump_skid, Position);
+		Audio.Play(Sfx.SFX_JUMP, Position);
+		Audio.Play(Sfx.SFX_JUMP_SKID, Position);
 	}
 
 	private void DashJump()
@@ -807,8 +807,8 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		CancelGroundSnap();
 
 		ModelScale = new(.6f, .6f, 1.4f);
-		Audio.Play(Sfx.sfx_jump, Position);
-		Audio.Play(Sfx.sfx_jump_superslide, Position);
+		Audio.Play(Sfx.SFX_JUMP, Position);
+		Audio.Play(Sfx.SFX_JUMP_SUPERSLIDE, Position);
 	}
 
 	private void AddPlatformVelocity(bool playSound)
@@ -826,7 +826,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 			tPlatformVelocityStorage = 0;
 
 			if (playSound && (add.Z >= 10 || add.XY().Length() > 10))
-				Audio.Play(Sfx.sfx_jump_assisted, Position);
+				Audio.Play(Sfx.SFX_JUMP_ASSISTED, Position);
 		}
 	}
 
@@ -1126,7 +1126,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 			if (tFootstep <= 0)
 			{
 				tFootstep = FootstepInterval;
-				Audio.Play(Sfx.sfx_footstep_general, Position);
+				Audio.Play(Sfx.SFX_FOOTSTEP_GENERAL, Position);
 			}
 
 			if (Time.OnInterval(0.05f))
@@ -1254,9 +1254,9 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		World.HitStun = .02f;
 
 		if (dashes <= 1)
-			Audio.Play(Sfx.sfx_dash_red, Position);
+			Audio.Play(Sfx.SFX_DASH_RED, Position);
 		else
-			Audio.Play(Sfx.sfx_dash_pink, Position);
+			Audio.Play(Sfx.SFX_DASH_PINK, Position);
 
 		//CancelGroundSnap();
 	}
@@ -1354,7 +1354,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 	{
 		tNoSkidJump = .1f;
 		Model.Play("Skid", true);
-		Audio.Play(Sfx.sfx_skid, Position);
+		Audio.Play(Sfx.SFX_SKID, Position);
 
 		for (int i = 0; i < 5; i ++)
 			World.Request<Dust>().Init(Position + new Vec3(targetFacing, 0) * i, new Vec3(-targetFacing, 0.0f).Normalized() * 50, 0x666666);
@@ -1431,7 +1431,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		Model.Rate = 1.8f;
 		velocity = Vec3.Zero;
 		climbCornerEase = 0;
-		Audio.Play(Sfx.sfx_grab, Position);
+		Audio.Play(Sfx.SFX_GRAB, Position);
 	}
 
 	private void StClimbingExit()
@@ -1446,7 +1446,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 	{
 		if (!Controls.Climb.Down)
 		{
-			Audio.Play(Sfx.sfx_let_go, Position);
+			Audio.Play(Sfx.SFX_LET_GO, Position);
 			stateMachine.State = States.Normal;
 			return;
 		}
@@ -1511,7 +1511,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 				Model.Play("Climb.Up");
 
 				if (Time.OnInterval(0.3f))
-					Audio.Play(Sfx.sfx_handhold, Position);
+					Audio.Play(Sfx.SFX_HANDHOLD, Position);
 			}
 
 		}
@@ -1581,7 +1581,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		// hops over tops
 		else if (inputTranslated.Y < 0 && !ClimbCheckAt(Vec3.UnitZ, out _))
 		{
-			Audio.Play(Sfx.sfx_climb_ledge, Position);
+			Audio.Play(Sfx.SFX_CLIMB_LEDGE, Position);
 			stateMachine.State = States.Normal;
 			velocity = new(targetFacing * ClimbHopForwardSpeed, ClimbHopUpSpeed);
 			tNoMove = ClimbHopNoMoveTime;
@@ -1739,21 +1739,21 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 
 	public void FeatherGet(Feather feather)
 	{
-		Audio.Play(Sfx.sfx_dashcrystal, Position);
+		Audio.Play(Sfx.SFX_DASHCRYSTAL, Position);
 		World.HitStun = 0.05f;
 
 		if (stateMachine.State == States.Feather)
 		{
 			tFeather = FeatherDuration;
 			featherZ = feather.Position.Z - 2;
-			Audio.Play(Sfx.sfx_feather_renew, Position);
+			Audio.Play(Sfx.SFX_FEATHER_RENEW, Position);
 		}
 		else
 		{
 			stateMachine.State = States.FeatherStart;
 			featherZ = feather.Position.Z - 2;
 			dashes = Math.Max(dashes, 1);
-			Audio.Play(Sfx.sfx_feather_get, Position);
+			Audio.Play(Sfx.SFX_FEATHER_GET, Position);
 		}
 	}
 
@@ -1818,7 +1818,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		if (tFeather <= EndWarningTime && !featherPlayedEndWarn)
 		{
 			featherPlayedEndWarn = true;
-			Audio.Play(Sfx.sfx_feather_state_end_warning, Position);
+			Audio.Play(Sfx.SFX_FEATHER_STATE_END_WARNING, Position);
 		}
 
 		if (tFeather <= 0)
@@ -1830,7 +1830,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 			holdJumpSpeed = velocity.Z = FeatherExitZSpeed;
 			tHoldJump = .1f;
 			autoJump = true;
-			Audio.Play(Sfx.sfx_feather_state_end, Position);
+			Audio.Play(Sfx.SFX_FEATHER_STATE_END, Position);
 
 			return;
 		}
@@ -1861,7 +1861,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		drawOrbs = true;
 		drawOrbsEase = 1;
 		PointShadowAlpha = 0;
-		Audio.Play(Sfx.sfx_revive, Position);
+		Audio.Play(Sfx.SFX_REVIVE, Position);
 	}
 
 	private void StRespawnUpdate()
@@ -1948,7 +1948,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		drawOrbs = true;
 		drawOrbsEase = 0;
 		PointShadowAlpha = 0;
-		Audio.Play(Sfx.sfx_death, Position);
+		Audio.Play(Sfx.SFX_DEATH, Position);
 	}
 
 	private void StDeadUpdate()
@@ -1995,7 +1995,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 		Model.Play("StrawberryGrab");
 		stateMachine.State = States.Bubble;
 		PointShadowAlpha = 0;
-		Audio.Play(Sfx.sfx_bubble_in, Position);
+		Audio.Play(Sfx.SFX_BUBBLE_IN, Position);
 	}
 
 	private CoEnumerator StBubbleRoutine()
@@ -2021,7 +2021,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 
 	private void StBubbleExit()
 	{
-		Audio.Play(Sfx.sfx_bubble_out, Position);
+		Audio.Play(Sfx.SFX_BUBBLE_OUT, Position);
 		sfxBubble?.Stop();
 		PointShadowAlpha = 1;
 	}
@@ -2043,8 +2043,8 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 			PointShadowAlpha = 0;
 			cameraOverride = new(World.Camera.Position, it.Position);
 			Game.Instance.Ambience.Stop();
-			Audio.StopBus(Sfx.bus_gameplay_world, false);
-			Audio.Play(Sfx.sfx_cassette_enter, Position);
+			Audio.StopBus(Sfx.BUS_GAMEPLAY_WORLD, false);
+			Audio.Play(Sfx.SFX_CASSETTE_ENTER, Position);
 		}
 	}
 
@@ -2079,7 +2079,7 @@ public class Player : Actor, IHaveModels, IHaveSprites, IRidePlatforms, ICastPoi
 
 		yield return 1.0f;
 
-		Audio.Play(Sfx.sfx_cassette_exit, Position);
+		Audio.Play(Sfx.SFX_CASSETTE_EXIT, Position);
 		cassette?.PlayerExit();
 
 		stateMachine.State = States.Normal;

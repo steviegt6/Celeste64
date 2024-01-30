@@ -50,7 +50,7 @@ public class Menu
 		{
 			if (action != null)
 			{
-				Audio.Play(Sfx.ui_select);
+				Audio.Play(Sfx.UI_SELECT);
 				action();
 				return true;
 			}
@@ -68,9 +68,9 @@ public class Menu
 		{
 			action();
 			if (get())
-				Audio.Play(Sfx.main_menu_toggle_on);
+				Audio.Play(Sfx.MAIN_MENU_TOGGLE_ON);
 			else
-				Audio.Play(Sfx.main_menu_toggle_off);
+				Audio.Play(Sfx.MAIN_MENU_TOGGLE_OFF);
 			return true;
 		}
 	}
@@ -86,8 +86,8 @@ public class Menu
 	private readonly List<Item> items = [];
 	private int index = 0;
 
-	public string UpSound = Sfx.ui_move;
-	public string DownSound = Sfx.ui_move;
+	public string UpSound = Sfx.UI_MOVE;
+	public string DownSound = Sfx.UI_MOVE;
 
 	public Vec2 Size
 	{

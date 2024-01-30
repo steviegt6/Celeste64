@@ -51,7 +51,7 @@ public class Checkpoint : Actor, IHaveModels, IPickup, IHaveSprites
 	{
 		if (!IsCurrent)
 		{
-			Audio.Play(Sfx.sfx_checkpoint, Position);
+			Audio.Play(Sfx.SFX_CHECKPOINT, Position);
 
 			World.Entry = World.Entry with { CheckPoint = Name };
 			if (!World.Entry.Submap)

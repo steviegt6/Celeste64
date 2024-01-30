@@ -41,7 +41,7 @@ public class Spring : Attacher, IHaveModels, IPickup
 		if (tCooldown <= 0)
 		{
 			UpdateOffScreen = true;
-			Audio.Play(Sfx.sfx_springboard, Position);
+			Audio.Play(Sfx.SFX_SPRINGBOARD, Position);
 			tCooldown = 1.0f;
 			Model.Play("Spring", true);
 			player.Spring(this);

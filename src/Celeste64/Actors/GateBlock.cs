@@ -15,7 +15,7 @@ public class GateBlock(Vec3 end) : Solid
 
     public override void Added()
     {
-		sfx = World.Add(new Sound(this, Sfx.sfx_touch_switch_gate_open_move));
+		sfx = World.Add(new Sound(this, Sfx.SFX_TOUCH_SWITCH_GATE_OPEN_MOVE));
 		UpdateOffScreen = true;
 		Start = Position;
     }
@@ -48,7 +48,7 @@ public class GateBlock(Vec3 end) : Solid
 			yield return Co.SingleFrame;
 		}
 
-		Audio.Play(Sfx.sfx_touch_switch_gate_finish, Position);
+		Audio.Play(Sfx.SFX_TOUCH_SWITCH_GATE_FINISH, Position);
 		sfx?.Stop();
 		sfx = null;
 		Velocity = Vec3.Zero;

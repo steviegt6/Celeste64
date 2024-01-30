@@ -23,8 +23,8 @@ public class Overworld : Scene
 			Target = new Target(CardWidth, CardHeight);
 			Image = new(Assets.Textures[level.Preview]);
 			Menu = new();
-			Menu.UpSound = Sfx.main_menu_roll_up;
-			Menu.DownSound = Sfx.main_menu_roll_down;
+			Menu.UpSound = Sfx.MAIN_MENU_ROLL_UP;
+			Menu.DownSound = Sfx.MAIN_MENU_ROLL_DOWN;
 
 			if (Save.Instance.TryGetRecord(Level.ID) is {} record)
 			{
@@ -158,8 +158,8 @@ public class Overworld : Scene
 
 		restartConfirmMenu.Add(new Menu.Option("Cancel"));
 		restartConfirmMenu.Add(new Menu.Option("Clear Save & Restart Level"));
-		restartConfirmMenu.UpSound = Sfx.main_menu_roll_up;
-		restartConfirmMenu.DownSound = Sfx.main_menu_roll_down;
+		restartConfirmMenu.UpSound = Sfx.MAIN_MENU_ROLL_UP;
+		restartConfirmMenu.DownSound = Sfx.MAIN_MENU_ROLL_DOWN;
 
 		if (startOnLastSelected)
 		{
@@ -213,13 +213,13 @@ public class Overworld : Scene
 			index = Calc.Clamp(index, 0, entries.Count - 1);
 
 			if (was != index)
-				Audio.Play(Sfx.ui_move);
+				Audio.Play(Sfx.UI_MOVE);
 
 			if (Controls.Confirm.ConsumePress())
 			{
 				state = States.Selected;
 				entries[index].Menu.Index = 0;
-				Audio.Play(Sfx.main_menu_postcard_flip);
+				Audio.Play(Sfx.MAIN_MENU_POSTCARD_FLIP);
 			}
 
 			if (Controls.Cancel.ConsumePress())
@@ -239,20 +239,20 @@ public class Overworld : Scene
 			{
 				if (entries[index].Menu.Index == 1)
 				{
-					Audio.Play(Sfx.main_menu_restart_confirm_popup);
+					Audio.Play(Sfx.MAIN_MENU_RESTART_CONFIRM_POPUP);
 					restartConfirmMenu.Index = 0;
 					state = States.Restarting;
 				}
 				else
 				{
-					Audio.Play(Sfx.main_menu_start_game);
+					Audio.Play(Sfx.MAIN_MENU_START_GAME);
 					Game.Instance.Music.Stop();
 					state = States.Entering;
 				}
 			}
 			else if (Controls.Cancel.ConsumePress())
 			{
-				Audio.Play(Sfx.main_menu_postcard_flip_back);
+				Audio.Play(Sfx.MAIN_MENU_POSTCARD_FLIP_BACK);
 				state = States.Selecting;
 			}
 		}
@@ -264,20 +264,20 @@ public class Overworld : Scene
 			{
 				if (restartConfirmMenu.Index == 1)
 				{
-					Audio.Play(Sfx.main_menu_start_game);
+					Audio.Play(Sfx.MAIN_MENU_START_GAME);
 					Game.Instance.Music.Stop();
 					Save.Instance.EraseRecord(entries[index].Level.ID);
 					state = States.Entering;
 				}
 				else
 				{
-					Audio.Play(Sfx.main_menu_restart_cancel);
+					Audio.Play(Sfx.MAIN_MENU_RESTART_CANCEL);
 					state = States.Selected;
 				}
 			}
 			else if (Controls.Cancel.ConsumePress())
 			{
-				Audio.Play(Sfx.main_menu_restart_cancel);
+				Audio.Play(Sfx.MAIN_MENU_RESTART_CANCEL);
 				state = States.Selected;
 			}
 		}

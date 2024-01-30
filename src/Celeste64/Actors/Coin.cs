@@ -55,9 +55,9 @@ public sealed class Coin : Actor, IHaveModels, IHaveSprites, IPickup, ICastPoint
 		{
 			Collected = true;
 			if (!AnyRemaining(World))
-				Audio.Play(Sfx.sfx_touch_switch_last, Position);
+				Audio.Play(Sfx.SFX_TOUCH_SWITCH_LAST, Position);
 			else
-				Audio.Play(Sfx.sfx_touch_switch_any, Position);
+				Audio.Play(Sfx.SFX_TOUCH_SWITCH_ANY, Position);
 		}
 	}
 

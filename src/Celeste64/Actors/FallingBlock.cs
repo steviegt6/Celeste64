@@ -42,20 +42,20 @@ public sealed class FallingBlock : Solid, IUnlockStrawberry
 		{
 			if (triggered || HasPlayerRider())
 			{
-				Audio.Play(Sfx.sfx_fallingblock_shake, Position);
+				Audio.Play(Sfx.SFX_FALLINGBLOCK_SHAKE, Position);
 				state = States.Shake;
 				TShake = .4f;
 				UpdateOffScreen = true;
 
 				if (Secret)
-					Audio.Play(Sfx.sfx_secret, Position);
+					Audio.Play(Sfx.SFX_SECRET, Position);
 			}
 		}
 		else if (state == States.Shake)
 		{
 			if (TShake <= 0)
 			{
-				Audio.Play(Sfx.sfx_fallingblock_fall, Position);
+				Audio.Play(Sfx.SFX_FALLINGBLOCK_FALL, Position);
 				state = States.Fall;
 			}
 		}
@@ -67,7 +67,7 @@ public sealed class FallingBlock : Solid, IUnlockStrawberry
 			{
 				if (Position.Z <= EndPosition.Value.Z)
 				{
-					Audio.Play(Sfx.sfx_fallingblock_land, Position);
+					Audio.Play(Sfx.SFX_FALLINGBLOCK_LAND, Position);
 					state = States.Landed;
 					TShake = .2f;
 					Velocity = Vec3.Zero;

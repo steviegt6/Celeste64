@@ -22,7 +22,7 @@ public class Titlescreen : Scene
 
 		if (Controls.Confirm.Pressed && !Game.Instance.IsMidTransition)
 		{
-			Audio.Play(Sfx.main_menu_first_input);
+			Audio.Play(Sfx.MAIN_MENU_FIRST_INPUT);
 			Game.Instance.Goto(new Transition()
 			{
 				Mode = Transition.Modes.Replace,

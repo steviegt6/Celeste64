@@ -19,8 +19,8 @@ public class TrafficBlock(Vec3 end) : Solid
 		base.Added();
 		Start = Position;
 		routine.Run(Sequence());
-		sfxMove = World.Add(new Sound(this, Sfx.sfx_zipmover_loop));
-		sfxRetract = World.Add(new Sound(this, Sfx.sfx_zipmover_retract_loop));
+		sfxMove = World.Add(new Sound(this, Sfx.SFX_ZIPMOVER_LOOP));
+		sfxRetract = World.Add(new Sound(this, Sfx.SFX_ZIPMOVER_RETRACT_LOOP));
 	}
 
 	public override void Update()
@@ -36,7 +36,7 @@ public class TrafficBlock(Vec3 end) : Solid
 			while (!HasPlayerRider())
 				yield return Co.SingleFrame;
 
-			Audio.Play(Sfx.sfx_zipmover_start, Position);
+			Audio.Play(Sfx.SFX_ZIPMOVER_START, Position);
 			TShake = .15f;
 			UpdateOffScreen = true;
 			yield return .15f;
@@ -57,13 +57,13 @@ public class TrafficBlock(Vec3 end) : Solid
 				MoveTo(target);
 			}
 
-			Audio.Play(Sfx.sfx_zipmover_stop, Position);
+			Audio.Play(Sfx.SFX_ZIPMOVER_STOP, Position);
 			TShake = .2f;
 			yield return .8f;
 
 			// Move back to start
 			{
-				Audio.Play(Sfx.sfx_zipmover_retract_start, Position);
+				Audio.Play(Sfx.SFX_ZIPMOVER_RETRACT_START, Position);
 				sfxRetract?.Resume();
 				var target = Start;
 				var normal = (target - Position).Normalized();
@@ -80,7 +80,7 @@ public class TrafficBlock(Vec3 end) : Solid
 
 			//Reactivate
 			{
-				Audio.Play(Sfx.sfx_zipmover_retract_stop, Position);
+				Audio.Play(Sfx.SFX_ZIPMOVER_RETRACT_STOP, Position);
 				TShake = .1f;
 				UpdateOffScreen = false;
 				yield return .5f;
