@@ -2,6 +2,8 @@
 
 This is a fork of [*Celeste 64: Fragments of the Mountain*](https://maddymakesgamesinc.itch.io/celeste64), a game made by the original Celeste developers in under 2 weeks for Celeste's 6th Anniversary.
 
+Working on external tooling right now, but the eventual goal is a mod loader and partial game rewrite.
+
 ## Installation
 
 ### Prerequitsites
